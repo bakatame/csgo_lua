@@ -68,20 +68,11 @@ local hook_fn = {}
 local VClient018_interface = utils.create_interface("client.dll", "VClient018")
 
 local function framestage(curStage)
+    -- code
     hook_fn.hook_framestage(curStage)
 end
 
-events["render"]:set(function ()
-    local local_player = entity.get_local_player()
-
-    if not local_player or not local_player:is_alive() or not globals.is_in_game or not globals.is_connected then
-        return false
-    end
-
-    if not hook_fn.hook_framestage then
-        hook_fn.hook_framestage = create_vmt_hook(VClient018_interface).hookMethod("void(__stdcall*)(int Stage)", framestage, 37)
-    end
-end)
+hook_fn.hook_framestage = create_vmt_hook(VClient018_interface).hookMethod("void(__stdcall*)(int Stage)", framestage, 37)
 
 events["shutdown"]:set(function ()
     if #vmt_hook.buffer > 0 then
