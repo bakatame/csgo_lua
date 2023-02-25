@@ -1,3 +1,10 @@
+--[[
+    There is a bug in this script
+    After hooking the framestage, he will not be able to uninstall the script
+    I don't know how to fix it for now
+    Trigger cheat: Neverlose/Nixware
+]]
+
 ffi.cdef[[
     int VirtualFree(void* lpAddress, unsigned long dwSize, unsigned long dwFreeType);
     void* VirtualAlloc(void* lpAddress, unsigned long dwSize, unsigned long  flAllocationType, unsigned long flProtect);
